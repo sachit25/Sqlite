@@ -14,30 +14,33 @@ def insert_data():
 
 
     conn.execute('''INSERT INTO FORECAST(Id,
-                Material_Number,
-                Region,
-                Delivering_Plant  ,
-                Sold_To_Customerr_Name  ,
-                Standard_price_USD  ,
-                SafetyFactor,
-                Quantity_Delivered,
-                ss,
-                Lead_Time,
-                Predicted,
-                safety_stock,
-                ROP ,
-                Max_Stock ,
-                Churn_in_Dollar ,
+                Material_Number ,
+                Region ,
+                Delivering_Plant ,
+                Sold_To_Customerr_Name ,
+                Lead_Time ,
+                Standard_price_USD ,
                 Service_Level ,
                 Forecast_Buckets ,
-                Forecast_Periods,
-                Delivery_Time
+                Forecast_Periods ,
+                Delivery_Time,
+                Quantity_Delivered,
+                Predicted ,
+                SafetyFactor ,
+                SS ,
+                ROP ,
+                Max_Stock ,
+                Churn_in_Dollar
                 ) \
-            VALUES ({},526, 'Asia', 'india', 'bbbb', 2000,20.5,44,0,55,66,0,0,2,6.5,8,6,2,'{}');'''.format(new_id+1,date.today()))
+            VALUES ({},526, 'Asia', 'india', 'bbbb', 2000,20,44,0,55,'{}',66,0,8.5,2,5,7,9.6);'''.format(new_id+1,date.today()))
 
     conn.commit()
     print ("Records created successfully")
     conn.close()        
+
+
+
+
 
 
 
@@ -47,24 +50,23 @@ def create_forecast_table():
     print("Opened database successfully")
     conn.execute('''CREATE TABLE if not exists Forecast
             (Id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-            Material_Number CHAR(10) ,
+            Material_Number CHAR(10),
             Region CHAR(50),
             Delivering_Plant CHAR(100),
             Sold_To_Customerr_Name CHAR(50),
-            Standard_price_USD int,
-            SafetyFactor real,
-            Quantity_Delivered,
-            SS int,
             Lead_Time int,
-            Predicted int,
-            safety_stock int,
-            ROP int,
-            Max_Stock int,
-            Churn_in_Dollar real,
+            Standard_price_USD int,
             Service_Level int,
             Forecast_Buckets int,
             Forecast_Periods int,
-            Delivery_Time DATE NOT NULL
+            Delivery_Time DATE NOT NULL,
+            Quantity_Delivered,
+            Predicted int,
+            SafetyFactor real,
+            SS int,
+            ROP int,
+            Max_Stock int,
+            Churn_in_Dollar real
             );''')
     conn.commit()
     print("Forecast Table created ")    
